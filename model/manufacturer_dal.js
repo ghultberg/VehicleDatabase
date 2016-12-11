@@ -13,7 +13,7 @@ exports.getAll = function(callback) {
 };
 
 exports.getById = function(manufacturer_id, callback) {
-    var query = 'SELECT * FROM manufacturer WHERE manufacturer_id = ?';
+    var query = 'SELECT * FROM vehicle_data WHERE manufacturer_id = ?';
     var queryData = [manufacturer_id];
 
     connection.query(query, queryData, function(err, result) {

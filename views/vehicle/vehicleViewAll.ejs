@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Available Vehicles</title>
+</head>
+<body>
+<h1>Vehicle</h1>
+<a href="/vehicle/add">Add New Vehicle</a>
+<br />
+<br />
+<table border="1">
+    <tr><th>Model</th><th>Manufacturer</th><th>Model Year</th><th>Price</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+
+        <td><a href="/vehicle/?vehicle_id=<%= result[i].vehicle_id %>">
+                <%= result[i].model%></a></td>
+        <td><%= result[i].name %></td>
+        <td><%= result[i].model_year %></td>
+        <td><%= result[i].price %></td>
+
+
+        <td>
+            <form action="/vehicle/delete/">
+                <input type="hidden" name="vehicle_id" id="vehicle_id" value="<%= result[i].vehicle_id %>" />
+                <input type="submit" value="Delete"/>
+            </form></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+
+</html>
