@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Manufacturer - <%= result[0].manufacturer_id %></title>
+</head>
+<body>
+<h1>Available Vehicles From <%= result[0].name %></h1>
+<h3>Country of Origin: <%= result[0].country %></h3>
+<ol>
+<%for (var i=0; i<result.length; i++){%>
+
+    <li><strong>Model: </strong><a href="/vehicle/?vehicle_id=<%= result[i].vehicle_id %>">
+            <%= result[i].model%></a><br/>
+        <strong>Year:</strong> <%= result[i].model_year %><br/>
+        <strong>Price: </strong><%= result[i].price %><br/>
+    </li><br/>
+
+<%;}%>
+</ol>
+</body>
+
+</html>

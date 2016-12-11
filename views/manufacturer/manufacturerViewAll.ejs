@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Manufacturer</title>
+</head>
+<body>
+<h1>Available Manufacturers</h1>
+<a href="/Manufacturer/add">Add New Manufacturer</a>
+<br />
+<br />
+<table border="1">
+    <tr><th>Name</th><th>Country</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/manufacturer/?manufacturer_id=<%= result[i].manufacturer_id %>"><%= result[i].name %></a></td>
+                <td><%= result[i].country%></td>
+        <td>
+            <form action="/manufacturer/delete/">
+                <input type="hidden" name="manufacturer_id" id="manufacturer_id" value="<%= result[i].manufacturer_id %>" />
+                <input type="submit" value="Delete"/>
+            </form></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+
+</html>
