@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Add New Vehicle</title>
+</head>
+<body>
+<h1>Add New Vehicle</h1>
+<form action="/vehicle/insert" method="get">
+    Manufacturer:
+    <select id="manufacturer_id" name="manufacturer_id">
+        <% for(var i=0; vehicle.length > i; i++ ) { %>
+        <option value="<%= vehicle[i].manufacturer_id %>"><%= vehicle[i].name %></option>
+        <% } %>
+    </select>
+    <br/>
+    <br/>
+    Model: <input id="model" name="model" type="text" />
+    <br />
+    <br />
+    Year:
+    <select id="model_year" name="model_year">
+        <% for(var i=2018; i > 1900; i-- ) { %>
+        <option value="<%= i %>"><%= i %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Price: <input id="price" name="price" type="text" />
+    <br />
+    <br />
+    Horsepower: <input id="horsepower" name="horsepower" type="text" />
+    <br />
+    <br />
+    Torque: <input id="torque" name="torque" type="text" />
+    <br />
+    <br />
+    Curb Weight: <input id="curb_weight" name="curb_weight" type="text" />
+    <br />
+    <br />
+    MPG: <input id="mpg" name="mpg" type="text" />
+    <br />
+    <br />
+    Cylinders:    <select id="cylinders" name="cylinders">
+        <% for(var i=24; i > 0; i-- ) { %>
+        <option value="<%= i %>"><%= i %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+
+
+
+    <input type="submit" />
+
+</form>
+</body>
+
+</html>

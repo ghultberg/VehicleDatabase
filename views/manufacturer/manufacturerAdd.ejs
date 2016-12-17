@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Add New Manufacturer</title>
+</head>
+<body>
+<h1>Add New Manufacturer</h1>
+<form action="/manufacturer/insert" method="get">
+    Name of Manufacturer: <input id="name" name="name" type="text" />
+    <br />
+    <br />
+    Country
+    <select id="country" name="country">
+        <% for(var i=0; manufacturer.length > i; i++ ) { %>
+        <option value="<%= manufacturer[i].country %>"><%= manufacturer[i].country %></option>
+        <% } %>
+    </select>
+
+    <input type="submit" />
+
+</form>
+</body>
+
+</html>

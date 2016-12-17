@@ -1,90 +1,90 @@
 var express = require('express');
 var router = express.Router();
-var manufacturer_dal = require('../model/manufacturer_dal');
+var customer_dal = require('../model/customer_dal');
 
 
-// View All mfgs
+// View All customers
 router.get('/all', function(req, res) {
-    manufacturer_dal.getAll(function(err, result){
+    customer_dal.getAll(function(err, result){
         if(err) {
             res.send(err);
         }
         else {
-            res.render('manufacturer/manufacturerViewAll', { 'result':result });
+            res.render('customer/customerViewAll', { 'result':result });
         }
     });
 
 });
 
-// View the mfg for the given id
+// View the customer for the given id
 router.get('/', function(req, res){
-    if(req.query.manufacturer_id == null) {
-        res.send('manufacturer_id is null');
+    if(req.query.customer_id == null) {
+        res.send('customer_id is null');
     }
     else {
-        manufacturer_dal.getById(req.query.manufacturer_id, function(err,result) {
+        customer_dal.getById(req.query.customer_id, function(err,result) {
             if (err) {
                 res.send(err);
             }
             else {
-                res.render('manufacturer/manufacturerViewById', {'result': result});
+                res.render('customer/customerViewById', {'result': result});
             }
         });
     }
 });
 
-// Return the add a new mfg form
+// Return the add a new customer form
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
-    manufacturer_dal.getAll(function(err,result) {
+    customer_dal.getAll(function(err,result) {
         if (err) {
             res.send(err);
         }
         else {
-            res.render('manufacturer/manufacturerAdd', {'manufacturer': result});
+            res.render('customer/customerAdd', {'customer': result});
         }
     });
 });
 
-// insert a mfg record
+// insert a customer record
 router.get('/insert', function(req, res){
     // simple validation
-    if(req.query.name == null) {
+    if(req.query.first_name == null || req.query.last_name == null) {
         res.send('Name must be provided.');
     }
-    else if(req.query.country == null) {
-        res.send('Country must be provided');
+    else if(req.query.email == null) {
+        res.send('Email must be provided');
     }
 
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
-        manufacturer_dal.insert(req.query, function(err,result) {
+        customer_dal.insert(req.query, function(err,result) {
             if (err) {
                 res.send(err);
             }
             else {
                 //poor practice, but we will handle it differently once we start using Ajax
 
-                res.redirect(302, '/manufacturer/all');
+                res.redirect(302, '/customer/all');
             }
         });
     }
 });
 
-// Delete a school for the given school_id
+// Delete a customer
 router.get('/delete', function(req, res){
-    if(req.query.manufacturer_id == null) {
-        res.send('manufacturer_id is null');
+    if(req.query.customer_id == null) {
+        res.send('customer_id is null');
     }
     else {
-        manufacturer_dal.delete(req.query.manufacturer_id, function(err, result){
+        customer_dal.delete(req.query.customer_id, function(err, result){
             if(err) {
                 res.send(err);
             }
             else {
                 //poor practice, but we will handle it differently once we start using Ajax
 
-                res.redirect(302, '/manufacturer/all');
+                res.redirect(302, '/customer/all');
             }
         });
     }

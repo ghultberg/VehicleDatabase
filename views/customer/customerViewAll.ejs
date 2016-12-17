@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Customer</title>
+</head>
+<body>
+<h1>Current Customers</h1>
+<a href="/customer/add">Add New Customer</a>
+<br />
+<br />
+<table border="1">
+    <tr><th>Name</th><th>Email</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/customer/?customer_id=<%= result[i].customer_id %>"><%= result[i].first_name %>
+                <%= result[i].last_name %></a></td>
+        <td><%= result[i].email%></td>
+        <td>
+            <form action="/customer/delete/">
+                <input type="hidden" name="customer_id" id="customer_id" value="<%= result[i].customer_id %>" />
+                <input type="submit" value="Delete"/>
+            </form></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+
+</html>

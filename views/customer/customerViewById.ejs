@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Customer - <%= result[0].customer_id %></title>
+</head>
+<body>
+
+<h1>Vehicles Owned By <%= result[0].first_name %> <%= result[0].last_name %></h1>
+<ol>
+    <%for (var i=0; i<result.length; i++){%>
+
+    <li>
+        <strong>Manufacturer: </strong><%= result[i].name %><br />
+        <strong>Model: </strong><%= result[i].model %><br/>
+        <strong>Year:</strong> <%= result[i].model_year %><br/>
+        <strong>Sale Price: </strong><%= result[i].sale_price %><br/>
+    </li><br/>
+
+    <%;}%>
+</ol>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Sale Order - <%= result[0].order_id %></title>
+</head>
+<body>
+<h1>Order Details</h1>
+<ul>
+    <li><strong>Customer:</strong> <%= result[0].first_name%> <%= result[0].last_name%></li>
+    <li><strong>Date purchased:</strong> <%= result[0].date_purchased %></li>
+    <li><strong>Total Sale Price:</strong> $<%= result[0].sale_price %></li>
+    <li><strong>MSRP:</strong> $<%=result[0].price%></li>
+    <li><strong>Vehicle: </strong> <%= result[0].model_year%> <%=result[0].name%> <%= result[0].model%></li>
+    <li><strong>Dealership:</strong> <%= result[0].d_name%></li>
+    <li><strong>Salesperson:</strong> <%= result[0].s_name%></li>
+
+
+
+
+</ul>
+
+</body>
+
+</html>

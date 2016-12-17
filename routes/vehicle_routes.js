@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var vehicle_dal = require('../model/vehicle_dal');
+var manufacturer_dal = require('../model/manufacturer_dal');
 
 
 // View All accounts
@@ -33,10 +34,10 @@ router.get('/', function(req, res){
     }
 });
 
-// Return the add a new school form
+
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
-    vehicle_dal.getAll(function(err,result) {
+    manufacturer_dal.getAll(function(err,result) {
         if (err) {
             res.send(err);
         }
@@ -46,7 +47,7 @@ router.get('/add', function(req, res){
     });
 });
 
-// insert a school record
+
 router.get('/insert', function(req, res){
     // simple validation
     if(req.query.model == null) {
@@ -60,19 +61,20 @@ router.get('/insert', function(req, res){
     }
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
-        account_dal.insert(req.query, function(err,result) {
+       vehicle_dal.insert(req.query, function(err,result) {
             if (err) {
                 res.send(err);
             }
             else {
                 //poor practice, but we will handle it differently once we start using Ajax
+
                 res.redirect(302, '/vehicle/all');
             }
         });
     }
 });
 
-// Delete a school for the given school_id
+
 router.get('/delete', function(req, res){
     if(req.query.vehicle_id == null) {
         res.send('vehicle_id is null');
@@ -84,6 +86,7 @@ router.get('/delete', function(req, res){
             }
             else {
                 //poor practice, but we will handle it differently once we start using Ajax
+
                 res.redirect(302, '/vehicle/all');
             }
         });

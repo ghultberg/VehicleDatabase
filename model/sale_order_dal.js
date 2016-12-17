@@ -5,16 +5,16 @@ var db  = require('./db_connection.js');
 var connection = mysql.createConnection(db.config);
 
 exports.getAll = function(callback) {
-    var query = 'SELECT * FROM manufacturer;';
+    var query = 'SELECT * FROM order_view;';
 
     connection.query(query, function(err, result) {
         callback(err, result);
     });
 };
 
-exports.getById = function(manufacturer_id, callback) {
-    var query = 'SELECT * FROM vehicle_data WHERE manufacturer_id = ?';
-    var queryData = [manufacturer_id];
+exports.getById = function(order_id, callback) {
+    var query = 'SELECT * FROM order_view WHERE order_id = ?';
+    var queryData = [order_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -22,11 +22,13 @@ exports.getById = function(manufacturer_id, callback) {
 };
 
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO manufacturer (name, country) VALUES (?, ?)';
+    var query = 'INSERT INTO sale_order (date_purchased, sale_price, customer_id, vehicle_id, dealership_id, employee_id) ' +
+        'VALUES (?, ?, ?, ?, ?, ?)';
 
     // the question marks in the sql query above will be replaced by the values of the
     // the data in queryData
-    var queryData = [params.name, params.country];
+    var queryData = [params.date_purchased, params.sale_price, params.customer_id, params. vehicle_id, params.dealership_id,
+    params.employee_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -34,9 +36,9 @@ exports.insert = function(params, callback) {
 
 }
 
-exports.delete = function(manufacturer_id, callback) {
-    var query = 'DELETE FROM manufacturer WHERE manufacturer_id = ?';
-    var queryData = [manufacturer_id];
+exports.delete = function(order_id, callback) {
+    var query = 'DELETE FROM sale_order WHERE order_id = ?';
+    var queryData = [order_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
@@ -45,17 +47,19 @@ exports.delete = function(manufacturer_id, callback) {
 };
 
 exports.update = function(params, callback) {
-    var query = 'UPDATE manufacturer SET name = ?, country = ? WHERE manufacturer_id = ?';
-    var queryData = [params.name, params.country, params.manufacturer_id];
+    var query = 'UPDATE sale_order SET date_purchased = ?, sale_price = ?, customer_id = ?,' +
+        'vehicle_id = ?, dealership_id = ?, employee_id = ? WHERE order_id = ?';
+    var queryData = [params.date_purchased, params.sale_price, params.customer_id, params. vehicle_id, params.dealership_id,
+        params.employee_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
     });
 };
 
-exports.edit = function(manufacturer_id, callback) {
+exports.edit = function(order_id, callback) {
     var query = 0;//'CALL school_getinfo(?)';
-    var queryData = [manufacturer_id];
+    var queryData = [order_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
